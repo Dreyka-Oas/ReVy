@@ -1,16 +1,13 @@
 import { writeTextFile, readTextFile, BaseDirectory, exists, mkdir } from '@tauri-apps/plugin-fs';
+import { STORAGE_KEYS } from '../constants/index.js';
 
 const CONFIG_FILE = 'scan_state.json';
 
 async function ensureDir() {
   try {
-    // In Tauri v2, we can just try to create the directory recursively.
-    // If it exists, it does nothing.
     await mkdir('', { baseDir: BaseDirectory.AppData, recursive: true });
     return true;
   } catch (e) {
-    // If it fails, it might be because the parent doesn't exist or permissions.
-    // We try to check if the root AppData exists by checking for a "."
     try {
       const dirExists = await exists('.', { baseDir: BaseDirectory.AppData });
       if (dirExists) return true;
@@ -23,7 +20,7 @@ async function ensureDir() {
 
 export async function saveScanState(state) {
   const data = JSON.stringify(state, null, 2);
-  localStorage.setItem("lethalbreed_scan_state", data);
+  localStorage.setItem(STORAGE_KEYS.SCAN_STATE, data);
   
   if (await ensureDir()) {
     try {
@@ -47,17 +44,17 @@ export async function getScanState() {
     }
   }
 
-  const raw = localStorage.getItem("lethalbreed_scan_state");
+  const raw = localStorage.getItem(STORAGE_KEYS.SCAN_STATE);
   return raw ? JSON.parse(raw) : null;
 }
 
 export function getBlacklist() {
-  const raw = localStorage.getItem("lethalbreed_blacklist");
+  const raw = localStorage.getItem(STORAGE_KEYS.BLACKLIST);
   return raw ? JSON.parse(raw) : [];
 }
 
 export function saveBlacklist(list) {
-  localStorage.setItem("lethalbreed_blacklist", JSON.stringify(list));
+  localStorage.setItem(STORAGE_KEYS.BLACKLIST, JSON.stringify(list));
 }
 
 export function addToBlacklist(path) {

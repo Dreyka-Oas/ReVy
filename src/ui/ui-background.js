@@ -7,7 +7,6 @@ export async function updateBackground(logoPath) {
     bg.id = 'app-background';
     document.body.prepend(bg);
     
-    // Initial styles
     Object.assign(bg.style, {
       position: 'fixed',
       inset: '0',

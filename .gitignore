@@ -1,34 +1,22 @@
+```
 # Dependencies
 node_modules/
-
-# Build output
-dist/
 target/
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
+# Logs and temp files
 *.log
-npm-debug.log*
-
-# Temp
-tmp/
-temp/
 *.tmp
 
-# Cache
-.cache/
-.vite/
-
-# Env
+# Environment
 .env
 .env.local
-*.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Rust/Cargo
+Cargo.lock
+**/*.rs.bk
+```
