@@ -16,7 +16,24 @@ target/
 .vscode/
 .idea/
 
-# Rust/Cargo
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+
+# Rust/Cargo (for Tauri)
 Cargo.lock
+Cargo.toml.orig
+target/
 **/*.rs.bk
+idb.log
+
+# Tauri specific
+src-tauri/target/
+src-tauri/Cargo.lock
 ```
