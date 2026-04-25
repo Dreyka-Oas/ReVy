@@ -16,7 +16,18 @@ target/
 .vscode/
 .idea/
 
-# Rust/Cargo
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Rust/Cargo (for Tauri)
 Cargo.lock
+target/
 **/*.rs.bk
+
+# OS generated files
+.DS_Store
+Thumbs.db
 ```
