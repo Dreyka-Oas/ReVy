@@ -1,12 +1,10 @@
-mod java;
-mod minecraft;
-mod system;
+mod modules;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    use java::{check_sdkman, list_java_installed, list_java_available, install_java, uninstall_java};
-    use minecraft::{launch_minecraft_version, get_java_for_version};
-    use system::get_system_ram;
+    use crate::modules::java::{check_sdkman, list_java_installed, list_java_available, install_java, uninstall_java};
+    use crate::modules::minecraft::{launch_minecraft_version, get_java_for_version};
+    use crate::modules::system::get_system_ram;
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
