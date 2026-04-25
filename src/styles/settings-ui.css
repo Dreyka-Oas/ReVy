@@ -1,0 +1,36 @@
+.settings-list { display: flex; flex-direction: column; gap: 4px; padding: 12px; }
+.settings-action-btn, .settings-add-btn, .settings-back-btn, .settings-blacklist-btn, .settings-close-btn { 
+  height: 24px; padding: 0 8px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; border: 1px solid var(--border); 
+  background: var(--bg-tertiary); color: var(--text-primary); cursor: pointer; transition: all 0.2s; 
+  display: flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.settings-add-btn { background: var(--accent); color: #fff; border: none; }
+.settings-add-btn:hover { background: var(--accent-hover); box-shadow: 0 0 0 1px var(--accent); }
+.settings-action-btn:hover, .settings-back-btn:hover, .settings-blacklist-btn:hover { background: var(--border); }
+.settings-close-btn { border: none; background: transparent; width: 24px; height: 24px; font-size: 0.85rem; }
+.settings-close-btn:hover { background: var(--bg-soft); color: #ef4444; }
+
+.settings-item { 
+  display: flex; align-items: center; gap: 12px; padding: 4px 10px; cursor: pointer; border-radius: 6px;
+  transition: all 0.2s; border: 1px solid transparent; background: var(--bg-soft); min-height: 36px;
+}
+.settings-item:hover { border-color: var(--border); }
+.settings-item.active { background: var(--bg-tertiary); border-color: var(--accent); }
+.settings-item-content { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+.settings-item-logo { width: 16px; height: 16px; object-fit: contain; flex: 0 0 auto; opacity: 0.8; }
+.settings-item-name { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.settings-item-btn { background: transparent; border: none; color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit; padding: 0; cursor: pointer; width: 100%; text-align: left; }
+.settings-item-icons { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.settings-item-icons img { width: 14px; height: 14px; object-fit: contain; opacity: 0.7; }
+
+.settings-delete-btn { 
+  border: none; background: var(--bg-tertiary); color: var(--text-secondary); border-radius: 4px; 
+  width: 20px; height: 20px; cursor: pointer; font-size: 0.65rem; display: flex; align-items: center; 
+  justify-content: center; transition: all 0.2s; flex-shrink: 0; 
+}
+.settings-delete-btn:hover { background: #ef4444; color: #fff; }
+
+.settings-empty { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); padding: 32px; text-align: center; }
+.settings-header { border-bottom: 1px solid var(--border) !important; background: var(--bg-primary) !important; min-height: 52px !important; padding: 0 16px !important; }
+.settings-header h2 { font-size: 0.85rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; }
+
