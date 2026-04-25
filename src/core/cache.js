@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '../constants/index.js';
-import { parseStorage, saveStorage } from './utils/helpers.js';
+import { parseStorage, saveStorage } from '../utils/core_helpers/helpers.js';
 
 const CACHE_KEY = STORAGE_KEYS.SCAN_CACHE;
 

@@ -1,39 +1,8 @@
-/* Startup Loader */
-#startup-loader {
-  position: fixed;
-  inset: 0;
-  background: var(--bg-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
+#startup-loader { position: fixed; inset: 0; background: var(--bg-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease; }
 #startup-loader.hidden { opacity: 0; pointer-events: none; }
-.loader-bar-container {
-  width: 280px;
-  height: 12px;
-  background: var(--bg-soft);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 15px;
-  border: 1px solid var(--border);
-}
-.loader-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: #0078d4;
-  border-radius: 6px;
-  transition: width 0.3s ease;
-}
-.loader-percent {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-/* Original Home Page Styles */
+.loader-bar-container { width: 280px; height: 12px; background: var(--bg-soft); border-radius: 6px; overflow: hidden; margin-top: 15px; border: 1px solid var(--border); }
+.loader-bar-fill { height: 100%; width: 0%; background: #0078d4; border-radius: 6px; transition: width 0.3s ease; }
+.loader-percent { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
 .loader-section { margin-top: 30px; padding: 0; background: transparent; border: none; border-radius: 0; min-width: 0; max-width: 760px; width: 100%; }
 .loader-list { width: 100%; }
 .loader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 170px)); gap: 14px; justify-content: center; justify-items: center; width: 100%; }
@@ -42,20 +11,11 @@
 .loader-card img { width: 70px; height: 70px; object-fit: contain; border-radius: 16px; flex: 0 0 auto; }
 .loader-card .loader-name { font-weight: 700; font-size: 1rem; text-transform: capitalize; }
 .loader-card .loader-count { color: var(--text-secondary); font-size: .85rem; }
-
 .loading-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 10px; text-align: center; }
 .loading-bar { width: 200px; height: 4px; background: var(--bg-tertiary); border-radius: 2px; overflow: hidden; }
 .loading-progress { width: 40%; height: 100%; background: linear-gradient(90deg, var(--accent), #00b4d8, var(--accent)); background-size: 200% 100%; border-radius: 2px; animation: loading-slide 1.2s ease-in-out infinite; }
 @keyframes loading-slide { 0% { transform: translate(-100%); } 100% { transform: translate(250%); } }
-
-.action-buttons { display: flex; gap: 12px; margin-top: 16px; justify-content: center; }
-.action-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 16px; min-width: 100px; height: 32px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); font-size: .85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-.action-btn:hover { background: var(--border); box-shadow: 0 0 0 1px var(--border); }
-.action-btn img { object-fit: contain; }
-.action-btn svg { flex-shrink: 0; }
-
-.no-loaders { color: var(--text-secondary); font-size: .9rem; padding: 10px; text-align: center; }
-.scan-debug { margin-top: 12px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); font-size: .8rem; line-height: 1.5; padding: 10px; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 .action-buttons { display: flex; gap: 12px; margin-top: 16px; justify-content: center; }
 .action-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 16px; min-width: 100px; height: 32px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); font-size: .85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
 .action-btn:hover { background: var(--border); box-shadow: 0 0 0 1px var(--border); }
@@ -63,6 +23,8 @@
 .action-btn svg { flex-shrink: 0; }
 .action-btn.test-running { opacity: 0.7; cursor: wait; }
 .action-btn.test-running svg { animation: spin 1s linear infinite; }
+.no-loaders { color: var(--text-secondary); font-size: .9rem; padding: 10px; text-align: center; }
+.scan-debug { margin-top: 12px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); font-size: .8rem; line-height: 1.5; padding: 10px; }
 .versions-panel { position: fixed; top: 12px; left: 12px; width: 340px; height: calc(100vh - 24px); background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border); box-shadow: 12px 0 40px var(--shadow); z-index: 25; display: flex; flex-direction: column; transform: translateX(-100%) scale(0.8); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 12px; overflow: hidden; }
 .versions-panel:not(.hidden) { transform: translateX(0) scale(1); }
 .versions-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: var(--bg-primary); min-height: 52px; }
@@ -81,7 +43,6 @@
 .version-play-btn:hover { background: var(--accent-hover); box-shadow: 0 0 0 1px var(--accent); }
 .version-play-btn.launching { opacity: 0.7; cursor: wait; transform: none; }
 .version-empty { text-align: center; color: var(--text-secondary); padding: 32px; font-size: 0.8rem; font-weight: 500; }
-.version-icon { color: var(--text-secondary); }
 .java-version-badge { display: flex; align-items: center; gap: 3px; background: var(--bg-secondary); padding: 3px 6px; border-radius: 4px; font-size: 0.7rem; color: var(--text-secondary); }
 .java-version-badge svg { width: 10px; height: 10px; }
 .version-item-actions { display: flex; gap: 4px; align-items: center; }
@@ -98,10 +59,9 @@
 .java-panel .java-version-info { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .java-panel .version-name { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
 .java-panel .java-vendor { font-size: 0.7rem; color: var(--text-secondary); background: var(--bg-tertiary); padding: 1px 6px; border-radius: 4px; font-weight: 500; }
-.java-panel .java-install-btn, .java-panel .java-uninstall-btn { height: 24px; padding: 0 10px; font-size: 0.7rem; font-weight: 700; border-radius: 4px; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
-.java-panel .java-install-btn { background: var(--accent); color: #fff; }
+.java-panel .java-install-btn { height: 24px; padding: 0 10px; font-size: 0.7rem; font-weight: 700; border-radius: 4px; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; background: var(--accent); color: #fff; }
 .java-panel .java-install-btn:hover { background: var(--accent-hover); box-shadow: 0 0 0 1px var(--accent); }
-.java-panel .java-uninstall-btn { background: var(--bg-tertiary); color: var(--text-secondary); width: 24px; padding: 0; display: flex; align-items: center; justify-content: center; }
+.java-panel .java-uninstall-btn { height: 24px; padding: 0 10px; font-size: 0.7rem; font-weight: 700; border-radius: 4px; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; background: var(--bg-tertiary); color: var(--text-secondary); width: 24px; padding: 0; display: flex; align-items: center; justify-content: center; }
 .java-panel .java-uninstall-btn:hover { background: #ef4444; color: #fff; }
 .java-panel .version-item.installing { position: relative; border-color: var(--accent); }
 .java-panel .version-item.installing::after { content: ""; position: absolute; bottom: 0; left: 0; height: 2px; background: var(--accent); width: var(--java-progress, 0%); transition: width 0.3s ease; }

@@ -1,5 +1,5 @@
 import { loadVersionsForLoader } from './ui/settings/ui-versions.js';
-import { sortVersions } from './core/utils/helpers.js';
+import { sortVersions } from './utils/core_helpers/helpers.js';
 
 export let testGlobalLoaders = [];
 export let testGlobalVersions = {};

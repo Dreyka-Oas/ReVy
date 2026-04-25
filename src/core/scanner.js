@@ -1,7 +1,7 @@
 import { detectLoaders, scanParentFolder } from "../utils/loaderDetector";
 import { getBlacklist } from "./storage";
 import { getCachedEntries, saveCachedEntries, clearCachedEntries, clearVersionsCache, clearAllLoaderCache } from "./cache";
-import { withConcurrencyLimit } from "./utils/helpers";
+import { withConcurrencyLimit } from "../utils/core_helpers/helpers.js";
 
 let forceRefresh = false;
 
