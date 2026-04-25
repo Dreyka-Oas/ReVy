@@ -2,7 +2,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { installJava, uninstallJava, listJavaInstalled, listJavaAvailable } from './utils/javaDetector.js';
 import { clearJavaInstalling } from './ui/settings/ui-versions.js';
 import { STORAGE_KEYS } from './constants/index.js';
-import { saveStorage } from './core/storage.js';
+import { saveStorage } from './core/utils/helpers.js';
 
 export async function launchMinecraftVersion(loaderPath, version, minRam, maxRam) {
   try {
