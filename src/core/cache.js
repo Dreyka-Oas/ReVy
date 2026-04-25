@@ -1,27 +1,32 @@
-const CACHE_KEY = 'lethalbreed_scan_cache';
+import { STORAGE_KEYS } from '../constants/index.js';
+import { parseStorage, saveStorage } from './storage.js';
+
+const CACHE_KEY = STORAGE_KEYS.SCAN_CACHE;
 
 export function getCachedEntries() {
-  const raw = localStorage.getItem(CACHE_KEY);
-  return raw ? JSON.parse(raw) : null;
+  return parseStorage(CACHE_KEY, null);
 }
 
 export function saveCachedEntries(entries) {
-  localStorage.setItem(CACHE_KEY, JSON.stringify(entries));
+  saveStorage(CACHE_KEY, entries);
 }
 
 export function clearCachedEntries() {
   localStorage.removeItem(CACHE_KEY);
 }
 
-const VERSIONS_CACHE_KEY = 'lethalbreed_versions_cache';
-const LOADER_CACHE_KEY = 'lethalbreed_loader_cache';
+const VERSIONS_CACHE_KEY = STORAGE_KEYS.VERSIONS_CACHE;
+const LOADER_CACHE_KEY = STORAGE_KEYS.LOADER_CACHE;
 
 export function getCachedVersions(loaderPath) {
-  try { return JSON.parse(localStorage.getItem(VERSIONS_CACHE_KEY)||'{}')[loaderPath] || null; } catch { return null; }
+  const cache = parseStorage(VERSIONS_CACHE_KEY, {});
+  return cache[loaderPath] || null;
 }
 
 export function saveCachedVersions(loaderPath, versions) {
-  try { const c = JSON.parse(localStorage.getItem(VERSIONS_CACHE_KEY)||'{}'); c[loaderPath] = versions; localStorage.setItem(VERSIONS_CACHE_KEY, JSON.stringify(c)); } catch {}
+  const cache = parseStorage(VERSIONS_CACHE_KEY, {});
+  cache[loaderPath] = versions;
+  saveStorage(VERSIONS_CACHE_KEY, cache);
 }
 
 export function clearVersionsCache() {
@@ -29,25 +34,30 @@ export function clearVersionsCache() {
 }
 
 export function getCachedLoaders(basePath) {
-  try { const c = JSON.parse(localStorage.getItem(LOADER_CACHE_KEY)||'{}'); return c[basePath] || null; } catch { return null; }
+  const cache = parseStorage(LOADER_CACHE_KEY, {});
+  return cache[basePath] || null;
 }
 
 export function saveCachedLoaders(basePath, loaders) {
-  try { const c = JSON.parse(localStorage.getItem(LOADER_CACHE_KEY)||'{}'); c[basePath] = loaders; localStorage.setItem(LOADER_CACHE_KEY, JSON.stringify(c)); } catch {}
+  const cache = parseStorage(LOADER_CACHE_KEY, {});
+  cache[basePath] = loaders;
+  saveStorage(LOADER_CACHE_KEY, cache);
 }
 
 export function clearCachedLoaders(basePath) {
-  try { const c = JSON.parse(localStorage.getItem(LOADER_CACHE_KEY)||'{}'); delete c[basePath]; localStorage.setItem(LOADER_CACHE_KEY, JSON.stringify(c)); } catch {}
+  const cache = parseStorage(LOADER_CACHE_KEY, {});
+  delete cache[basePath];
+  saveStorage(LOADER_CACHE_KEY, cache);
 }
 
 export function clearAllLoaderCache() {
   localStorage.removeItem(LOADER_CACHE_KEY);
 }
 
-const JAVA_RAM_CONFIG_KEY = 'java_ram_config';
+const JAVA_RAM_CONFIG_KEY = STORAGE_KEYS.JAVA_RAM_CONFIG;
 
 export function getJavaRamConfig() {
-  const rawState = localStorage.getItem("lethalbreed_scan_state");
+  const rawState = localStorage.getItem(STORAGE_KEYS.SCAN_STATE);
   if (rawState) {
     try {
       const state = JSON.parse(rawState);
@@ -60,15 +70,9 @@ export function getJavaRamConfig() {
     } catch (e) {}
   }
 
-  const raw = localStorage.getItem(JAVA_RAM_CONFIG_KEY);
-  if (raw) {
-    try {
-      return JSON.parse(raw);
-    } catch (e) {}
-  }
-  return { min: 2, max: 4 };
+  return parseStorage(JAVA_RAM_CONFIG_KEY, { min: 2, max: 4 });
 }
 
 export function saveJavaRamConfig(min, max) {
-  localStorage.setItem(JAVA_RAM_CONFIG_KEY, JSON.stringify({ min, max }));
+  saveStorage(JAVA_RAM_CONFIG_KEY, { min, max });
 }

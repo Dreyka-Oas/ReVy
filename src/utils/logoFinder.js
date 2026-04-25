@@ -45,18 +45,13 @@ export async function extractDominantColor(blobOrUrl) {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, 1, 1);
         const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
-        // Only revoke if we created the URL here
         if (!isString && img.src.startsWith('blob:')) URL.revokeObjectURL(img.src);
         resolve([r, g, b]);
       } catch (e) {
-        console.error('[Logo] Color extract error:', e);
         resolve(null);
       }
     };
-    img.onerror = () => {
-      console.warn('[Logo] Failed to load image for color extraction');
-      resolve(null);
-    };
+    img.onerror = () => resolve(null);
     img.src = isString ? blobOrUrl : URL.createObjectURL(blobOrUrl);
   });
 }

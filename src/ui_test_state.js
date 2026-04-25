@@ -1,4 +1,5 @@
 import { loadVersionsForLoader } from './ui/settings/ui-versions.js';
+import { sortVersions } from './core/utils/helpers.js';
 
 export let testGlobalLoaders = [];
 export let testGlobalVersions = {};
@@ -22,7 +23,8 @@ export async function getMergedTestVersions(loaders) {
       map.get(version).push(loader);
     }
   }
-  return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0], undefined, { numeric: true, sensitivity: 'base' })).map(([version, loaders]) => ({ version, loaders }));
+  const sorted = sortVersions([...map.keys()]);
+  return sorted.map(version => ({ version, loaders: map.get(version) }));
 }
 const refreshCounts = () => document.querySelectorAll('.test-loader-header').forEach(headerEl => { const loader = testGlobalLoaders[+headerEl.dataset.loaderIndex]; headerEl.querySelector('.test-loader-count').textContent = `(${versionsFor(loader.path).length} sélectionnée(s))`; });
 const syncVersion = (path, version, checked) => { if (!testGlobalVersions[path]) testGlobalVersions[path] = []; testGlobalVersions[path] = checked ? (testGlobalVersions[path].includes(version) ? testGlobalVersions[path] : [...testGlobalVersions[path], version]) : testGlobalVersions[path].filter(v => v !== version); refreshCounts(); };

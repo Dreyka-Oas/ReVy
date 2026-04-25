@@ -1,13 +1,40 @@
+```
 # Dependencies
 node_modules/
+vendor/
 
-# Build output
+# Build artifacts
 dist/
+build/
 target/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# Rust/Cargo
+Cargo.lock
+**/*.rs.bk
+**/target/
+
+# Tauri
+src-tauri/target/
+**/tauri.conf.json
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
 
@@ -15,20 +42,13 @@ target/
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-npm-debug.log*
-
-# Temp
-tmp/
-temp/
-*.tmp
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # Cache
-.cache/
-.vite/
-
-# Env
-.env
-.env.local
-*.local
+**/__pycache__/
+**/.mypy_cache/
+**/.pytest_cache/
+```

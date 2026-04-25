@@ -1,6 +1,8 @@
 import { invoke } from '@tauri-apps/api/core';
 import { installJava, uninstallJava, listJavaInstalled, listJavaAvailable } from './utils/javaDetector.js';
 import { clearJavaInstalling } from './ui/settings/ui-versions.js';
+import { STORAGE_KEYS } from './constants/index.js';
+import { saveStorage } from './core/storage.js';
 
 export async function launchMinecraftVersion(loaderPath, version, minRam, maxRam) {
   try {
@@ -27,12 +29,12 @@ export async function uninstallJavaWithProgress(identifier, setInstalling, onCom
 
 export async function loadJavaData(forceRefresh = false) {
   if (forceRefresh) {
-    localStorage.removeItem('java_installed_cache');
-    localStorage.removeItem('java_available_cache');
+    localStorage.removeItem(STORAGE_KEYS.JAVA_INSTALLED_CACHE);
+    localStorage.removeItem(STORAGE_KEYS.JAVA_AVAILABLE_CACHE);
   }
   let installed = await listJavaInstalled();
-  if (installed.length > 0) localStorage.setItem('java_installed_cache', JSON.stringify(installed));
+  if (installed.length > 0) saveStorage(STORAGE_KEYS.JAVA_INSTALLED_CACHE, installed);
   let available = await listJavaAvailable();
-  if (available.length > 0) localStorage.setItem('java_available_cache', JSON.stringify(available));
+  if (available.length > 0) saveStorage(STORAGE_KEYS.JAVA_AVAILABLE_CACHE, available);
   return { installed, available };
 }
