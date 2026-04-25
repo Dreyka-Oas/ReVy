@@ -1,4 +1,3 @@
-```
 # Dependencies
 node_modules/
 target/
@@ -21,13 +20,21 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+venv/
+.venv/
 
 # Rust/Cargo (for Tauri)
 Cargo.lock
+Cargo.toml.orig
 target/
 **/*.rs.bk
+idb.log
+
+# Tauri specific
+src-tauri/target/
+src-tauri/Cargo.lock
 
 # OS generated files
 .DS_Store
 Thumbs.db
-```
